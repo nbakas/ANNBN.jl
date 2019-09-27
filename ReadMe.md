@@ -4,9 +4,7 @@
 
 This is a Julia code for the implementation of ANNBN numerical scheme. It regards the computation of Artificial Neural Networks' weights, without a iterative training algorithm, by dividing the dataset in small neighborhoods. 
 
-![annbn](annbn.png)
-
->Key features of the ANNBN Algorithm
+> Key features of the ANNBN Algorithm
 
 - the training is vastly fast.
 - it exhibits remarkably low errors.
