@@ -1,4 +1,4 @@
-# ANNBN: 'Training-Free' Artificial Neural Networks
+# ANNBN: Training-Free Artificial Neural Networks
 
 > Scope
 
