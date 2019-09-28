@@ -29,7 +29,7 @@ They create the variables xx_train (x in manuscript), yy_train (y), i_train (m),
 
 > Regression
 
-Start with example in /test/100_variables.jl . You may change the input xx_train, yy_train, the nomber of observations, etc., and compare with other methods.
+Start with example in /test/100_variables.jl . You may change the input xx_train, yy_train, the number of observations, etc., and compare with other methods.
 
 > Classification for Computer Vision
 
