@@ -31,7 +31,7 @@ They create the variables xx_train (x in manuscript), yy_train (y), i_train (m),
 
 Start with example in /test/100_variables.jl . You may change the input xx_train, yy_train, the nomber of observations, etc., and compare with other methods.
 
-> Classification & Computer Vision
+> Classification for Computer Vision
 
 Start with example in /test/MNIST/__mnist-all-digits_for_1_2_3_4_in_Table_2_and_RF_GB.jl . You may reproduce the results in Table 2 of the manuscript.
 
