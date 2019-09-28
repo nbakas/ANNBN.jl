@@ -1,4 +1,4 @@
-# Training-Free Artificial Neural Networks
+# Training-Free Artificial Neural Networks, for Fast & Stable Computations
 
 > Scope
 
