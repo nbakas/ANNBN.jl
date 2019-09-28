@@ -12,7 +12,7 @@ function train_layer_1_sigmoid(neurons,vars,obs,n_per_part,inds_all,x,y)
                 if sum(isnan.(atmp))==0
                     # a_all[i,:].=atmp
                     err=[ones(n_per_part[i+1]-n_per_part[i]) x[inds_all[n_per_part[i]+1:n_per_part[i+1]],:]]*atmp.-isigm1.(y[inds_all[n_per_part[i]+1:n_per_part[i+1]]])
-                    println(i," ",mean(abs.(err)))
+                    # println(i," ",mean(abs.(err)))
                 else
                     ooops+=1
                     # println("local inverse problem, neuron=",i," total ooops=",ooops)

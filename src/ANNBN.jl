@@ -4,7 +4,7 @@ module ANNBN
     # __precompile__()
     using Plots, Statistics, Dates, LinearAlgebra, Random, SpecialFunctions, Clustering, IterativeSolvers
     using Base.Threads
-    using CUDAdrv, CUDAnative, CuArrays
+    # using CUDAdrv, CUDAnative, CuArrays
     # __precompile__()
 
     function sigm1(x) 1.0/(1.0+exp(-x)) end

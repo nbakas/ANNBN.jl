@@ -1,9 +1,4 @@
 
-
-# using Base.Threads
-#
-# nthreads()
-
 neurons_all=Vector{Int64}(undef,0)
 ee_all=Vector{Float64}(undef,0)
 maetes=Vector{Float64}(undef,0)

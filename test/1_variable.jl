@@ -1,8 +1,7 @@
 
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random, Debugger
-if !(pwd() in LOAD_PATH) push!(LOAD_PATH, pwd()) end
-using ANNBN
-# include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
+path1=realpath(dirname(@__FILE__)*"/..")
+include(string(path1,"/src/ANNBN.jl"))
 
 # This is a simple example in 1 dimension. You may set the unknown function below,
 # as well as the level of noise, and number of observations

@@ -1,6 +1,6 @@
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random
-if !(pwd() in LOAD_PATH) push!(LOAD_PATH, pwd()) end
-using ANNBN
+path1=realpath(dirname(@__FILE__)*"/..")
+include(string(path1,"/src/ANNBN.jl"))
 
 
 ##### PARTIAL DIFFERENTIAL EQUATIONS
@@ -12,12 +12,12 @@ xx_train=[x y];i_train=size(xx_train,1);vars=2;
 nof_b=20;xb1=zeros(nof_b,2);xb1[:,2]=range(0,1,length=nof_b);xb2=zeros(nof_b,2);xb2[:,1]=range(0,1,length=nof_b);
 xb3=ones(nof_b,2);xb3[:,2]=range(0,1,length=nof_b);xb4=ones(nof_b,2);xb4[:,1]=range(0,1,length=nof_b)
 xb=[xb1;xb2;xb3;xb4];yb=zeros(size(xb,1));yb[end-nof_b+1:end].=sin.(pi.*range(0,1,length=nof_b))
-# source 
-y_source=zeros(i_train).+0.0(rand(i_train)) # you ay adjust the level of noise here
+# source
+y_source=zeros(i_train).+0.0(rand(i_train)) # you may adjust the level of noise here
 
 
 ##### Clustering
-neurons=50;inds_all,n_per_part=___clustering(neurons,xx_train,200)
+neurons=50;inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200)
 
 ##### Solve PDE
 # Use # 1 Gaussian for calc_phi,calc_phi_deriv,calc_phi_deriv_deriv
@@ -49,4 +49,4 @@ scatter3d!(xx_train[:,1],xx_train[:,2],predl1_deriv_deriv2,label="Derivative fyy
     color=:black,markershape=:star5,legend=:topleft,markersize=1)
 scatter3d!(xx_train[:,1],xx_train[:,2],predl1_deriv_deriv1+predl1_deriv_deriv2,label="fxx + fyy",
     color=:black,markershape=:circle,legend=:topleft,markersize=1)
-# savefig("Laplace_fxx_fyy.pdf") 
+# savefig("Laplace_fxx_fyy.pdf")

@@ -1,6 +1,6 @@
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random
-if !(pwd() in LOAD_PATH) push!(LOAD_PATH, pwd()) end
-using ANNBN
+path1=realpath(dirname(@__FILE__)*"/..")
+include(string(path1,"/src/ANNBN.jl"))
 
 function ff(x)
     xx=200x .- 100
@@ -55,7 +55,7 @@ plot!(err[ier],label="XGBoost",color=:black,linestyle=:dot,legend=:topleft,linew
 ##### ANNBN RBF
 neurons=Int64(floor(i_train/(vars+1)))
 neurons=100 # this automatically generates number of neurons== number of clusters (§3.1)
-inds_all,n_per_part=___clustering(neurons,xx_train,200)
+inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200)
 cc1=100.0
 a_all,a_layer1,layer1=ANNBN.train_layer_1_rbf(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train,cc1)
 predl1,layer1_train=ANNBN.predict_new_rbf(a_all,a_layer1,xx_train,i_train,neurons,n_per_part,inds_all,xx_train,vars,cc1)
@@ -65,5 +65,3 @@ maete=mean(abs.(yy_test-predl1_test))
 err=yy_test-predl1_test;ier=sortperm(err)
 plot!(err[ier],label="ANNBN",color=:black,linestyle=:dashdotdot,legend=:topleft,linewidth=3)
 # savefig("Grienwak.pdf")
-
-

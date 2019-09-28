@@ -2,7 +2,7 @@
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random, XLSX
 include("ann_by_parts.jl")
 
-path_project="C:\\Dropbox\\julialangfiles\\finance\\"
+path_project="~\\finance\\"
 file1="GE.xlsx"
 sheet1="GE"
 range1="A1:G1260"
@@ -15,10 +15,10 @@ xx_train=[yy_train[5:end-1] yy_train[4:end-2] yy_train[3:end-3] yy_train[2:end-4
 
 yy_train=yy_train[6:end]
 aa=xx_train\yy_train
-pred=xx_train*aa 
+pred=xx_train*aa
 
 plot(yy_train[1:100])
-plot!(pred[1:100]) 
+plot!(pred[1:100])
 
 mean(abs.(yy_train-pred))
 mean(abs.(yy_train[1:end-1]-yy_train[2:end]))
@@ -41,7 +41,7 @@ maetr=mean(abs.(yy_train-predl1))
 # maete=mean(abs.(yy_test-predl1_test))
 
 
-plot!(predl1[1:100]) 
+plot!(predl1[1:100])
 
 
 nof_folds=20 # you may change these
@@ -55,4 +55,4 @@ maetr=mean(abs.(yy_train-predl1_train))
 # predl1_test=sum(predl1_all)./sum(1 ./maetrs)
 # maete=mean(abs.(yy_test-predl1_test))
 
-plot!(predl1_train[1:100]) 
+plot!(predl1_train[1:100])
