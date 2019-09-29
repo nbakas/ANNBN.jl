@@ -25,7 +25,7 @@ This is a Julia code for the implementation of ANNBN numerical scheme. It regard
 
 Download the files and run the examples comprised in the /test folder
 
-XAMPLES:The examples presented in the manuscript are comprised in the folder __test__. It contins the examples presented in the manuscript for __regression__ and solution of __PDEs__. The subfolder __MNIST__ contains the ANNBN implementation for classification of MNIST databse for __computer vision__. 
+EXAMPLES:: The examples presented in the manuscript are comprised in the folder __test__. It contins the examples presented in the manuscript for __regression__ and solution of __PDEs__. The subfolder __MNIST__ contains the ANNBN implementation for classification of MNIST databse for __computer vision__. 
 
 They create the variables xx_train (x in manuscript), yy_train (y), i_train (m), vars, (n), xx_test, yy_test, i_test (the coresponding, out-of-sample data for testing the prediction model). The weights for the hidden layer are stored in a_all (Vector{Vector{Float64}}), and for the output layer at a_layer1 (with length nerons+1).
 
