@@ -1,5 +1,6 @@
 
-
+# With this file you may reproduce the results for cases 1, 2, 3, 4 in Table 2,
+# as well as for Random Forests and Gradient Boosting
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random, MLDatasets, Plots
 using Printf, Debugger, IterativeSolvers
 train_x, yy_train_all = MLDatasets.MNIST.traindata()
