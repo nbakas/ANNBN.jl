@@ -4,7 +4,7 @@
 
 This is a Julia code for the implementation of ANNBN numerical scheme. It regards the computation of Artificial Neural Networks' weights, without a iterative training algorithm, by dividing the dataset in small neighborhoods. 
 
-> Key features of the ANNBN Algorithm
+> Features of the Algorithm
 
 - the training is vastly fast.
 - it exhibits remarkably low errors.
@@ -33,5 +33,5 @@ Start with example in /test/100_variables.jl . You may change the input xx_train
 
 > Classification for Computer Vision
 
-Start with example in /test/MNIST/__mnist-all-digits_for_1_2_3_4_in_Table_2_and_RF_GB.jl . You may reproduce the results in Table 2 of the manuscript.
+Start with example in /test/MNIST/__MNIST.jl . You may reproduce the results in Table 2 of the manuscript.
 
