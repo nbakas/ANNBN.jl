@@ -10,7 +10,7 @@ This is a Julia code for the implementation of ANNBN numerical scheme. It regard
 - it exhibits remarkably low errors.
 - adheres to the underlying theory.
 - same formulation for regression and classification. 
-- high accuracy for cmputer vision tasks, without exploitation of spatial information.
+- high accuracy for computer vision tasks, without exploitation of spatial information.
 - approximating highly nonlinear functions in multiple dimensions with low errors. 
 - approximating higher-order partial derivatives.
 - numerically solving Partial Differential Equations.
