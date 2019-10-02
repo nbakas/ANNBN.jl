@@ -1,4 +1,4 @@
-# Training-Free Artificial Neural Networks
+# Fast & Accurate Artificial Neural Networks
 
 > Scope
 
