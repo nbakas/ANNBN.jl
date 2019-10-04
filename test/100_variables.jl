@@ -17,6 +17,20 @@ yy_test=zeros(i_test); for i=1:i_test yy_test[i]=ff(xx_test[i,:]) end
 # yy_test.+=noise_perc.*rand(i_test)
 yy_test.-=mi;yy_test./=ma;yy_test.*=0.8;yy_test.+=0.1
 
+##### ANNBN RBF
+neurons=Int64(floor(i_train/(vars+1)))
+neurons=100 # this automatically generates number of neurons== number of clusters (§3.1)
+inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200)
+cc1=100.0
+a_all,a_layer1,layer1=ANNBN.train_layer_1_rbf(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train,cc1)
+predl1,layer1_train=ANNBN.predict_new_rbf(a_all,a_layer1,xx_train,i_train,neurons,n_per_part,inds_all,xx_train,vars,cc1)
+predl1_test,layer1_test=ANNBN.predict_new_rbf(a_all,a_layer1,xx_test,i_test,neurons,n_per_part,inds_all,xx_train,vars,cc1)
+maetr=mean(abs.(yy_train-predl1))
+maete=mean(abs.(yy_test-predl1_test))
+err=yy_test-predl1_test;ier=sortperm(err)
+plot(err[ier],label="ANNBN",color=:black,linestyle=:dashdotdot,legend=:topleft,linewidth=3)
+# savefig("Grienwak.pdf")
+
 
 using DecisionTree, Statistics
 num_trees=100;
@@ -29,7 +43,7 @@ predl1_test = DecisionTree.predict(regr_3, tmp_xx_test);
 mean(abs.(predl1-yy_train))
 mae=mean(abs.(predl1_test-yy_test))
 err=yy_test-predl1_test;ier=sortperm(err)
-plot(err[ier],label="Random Forests",color=:black,linestyle=:dash,legend=:topleft,linewidth=3)
+plot!(err[ier],label="Random Forests",color=:black,linestyle=:dash,legend=:topleft,linewidth=3)
 
 
 using PyCall,ScikitLearn
@@ -51,17 +65,3 @@ mean(abs.(predl1-yy_train))
 mae=mean(abs.(predl1_test-yy_test))
 err=yy_test-predl1_test;ier=sortperm(err)
 plot!(err[ier],label="XGBoost",color=:black,linestyle=:dot,legend=:topleft,linewidth=3)
-
-##### ANNBN RBF
-neurons=Int64(floor(i_train/(vars+1)))
-neurons=100 # this automatically generates number of neurons== number of clusters (§3.1)
-inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200)
-cc1=100.0
-a_all,a_layer1,layer1=ANNBN.train_layer_1_rbf(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train,cc1)
-predl1,layer1_train=ANNBN.predict_new_rbf(a_all,a_layer1,xx_train,i_train,neurons,n_per_part,inds_all,xx_train,vars,cc1)
-predl1_test,layer1_test=ANNBN.predict_new_rbf(a_all,a_layer1,xx_test,i_test,neurons,n_per_part,inds_all,xx_train,vars,cc1)
-maetr=mean(abs.(yy_train-predl1))
-maete=mean(abs.(yy_test-predl1_test))
-err=yy_test-predl1_test;ier=sortperm(err)
-plot!(err[ier],label="ANNBN",color=:black,linestyle=:dashdotdot,legend=:topleft,linewidth=3)
-# savefig("Grienwak.pdf")
