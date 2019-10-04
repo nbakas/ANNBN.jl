@@ -64,8 +64,8 @@ push!(weights,convert(Array{Float32,1},bb))
 # bb=convert(Vector{Float32},[a_layer1[end]])
 # push!(weights,bb)
 
-
-nof_layers=10
+# _todo_Eq_15
+nof_layers=1
 for i=2:nof_layers
     global neurons_all,layer1,layer1_test,weights,a_layer1
     neurons=neurons_all[end]
