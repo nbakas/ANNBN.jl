@@ -119,8 +119,8 @@ Y=convert(Array{Float32,2},yy_train')
 # Y=sum(X,dims=1)
 m = Chain(
   Dense(vars, neurons_all[1], ANNBN.sigm1),
-  Dense(neurons_all[1], neurons_all[2], ANNBN.sigm1),
-  Dense(neurons_all[2], neurons_all[3], ANNBN.sigm1),
+  # Dense(neurons_all[1], neurons_all[2], ANNBN.sigm1),
+  # Dense(neurons_all[2], neurons_all[3], ANNBN.sigm1),
   # Dense(neurons_all[3], neurons_all[4], ANNBN.sigm1),
   # Dense(neurons_all[4], neurons_all[5], ANNBN.sigm1),
   # Dense(neurons_all[5], neurons_all[6], ANNBN.sigm1),
@@ -128,7 +128,7 @@ m = Chain(
   # Dense(neurons_all[7], neurons_all[8], ANNBN.sigm1),
   # Dense(neurons_all[8], neurons_all[9], ANNBN.sigm1),
   # Dense(neurons_all[9], neurons_all[10], ANNBN.sigm1),
-  Dense(neurons_all[3], 1))
+  Dense(neurons_all[1], 1))
 loss(x, y) = mean((m(x).-y).^2)
 # opt = ADAM()
 opt = Descent(1e-2)
