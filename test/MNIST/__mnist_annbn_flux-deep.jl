@@ -38,7 +38,7 @@ yy_test.-=mi;yy_test./=ma;yy_test.*=1.0-2tol1;yy_test.+=tol1
 # yy_train=yy_train[1:i_train]
 
 
-include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
+
 inds_all=1:i_train;neurons=1000;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
 @time a_all,a_layer1,layer1=ANNBN.train_layer_1_sigmoid_fast(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train)
 predl1=[layer1 ones(i_train)]*a_layer1
