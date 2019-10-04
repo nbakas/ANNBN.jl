@@ -3,7 +3,8 @@ using Statistics
 using Flux: onehotbatch, onecold, crossentropy, throttle
 using Base.Iterators: repeated
 
-include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
+path1=realpath(dirname(@__FILE__)*"/../..")
+include(string(path1,"/src/ANNBN.jl"))
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random, MLDatasets, Plots, Printf, Debugger
 train_x, yy_train_all = MLDatasets.MNIST.traindata()
 test_x,  yy_test_all  = MLDatasets.MNIST.testdata()
