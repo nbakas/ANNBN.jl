@@ -30,14 +30,6 @@ yy_test=copy(yy_test_all)
 i1=abs.(yy_test.-num_to_test).<0.01;i2=abs.(yy_test.-num_to_test).>0.01;yy_test[i1].=1;yy_test[i2].=0;
 yy_test.-=mi;yy_test./=ma;yy_test.*=1.0-2tol1;yy_test.+=tol1
 
-# layer1_ok=Array{Float64}(undef,1000)
-# layer1_ok=[layer1_ok  zeros(1000)]
-
-# i_train=20000
-# xx_train=xx_train[1:i_train,:]
-# yy_train=yy_train[1:i_train]
-
-
 
 inds_all=1:i_train;neurons=1000;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
 @time a_all,a_layer1,layer1=ANNBN.train_layer_1_sigmoid_fast(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train)
@@ -65,21 +57,13 @@ push!(weights,convert(Array{Float32,1},bb))
 # bb=convert(Vector{Float32},[a_layer1[end]])
 # push!(weights,bb)
 
+
 # _todo_Eq_15
 nof_layers=1
 for i=2:nof_layers
     global neurons_all,layer1,layer1_test,weights,a_layer1
     neurons=neurons_all[end]
-    # if i==2
-    #     neurons=500
-    # else
-    #     neurons=100
-    # end
-
     inds_all=1:i_train;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
-
-    # inds_all=1:i_train;neurons=10000;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
-
     @time a_all,a_layer1,layer1=ANNBN.train_layer_1_sigmoid_fast(neurons,neurons,i_train,n_per_part,inds_all,layer1,yy_train)
     predl1=[layer1 ones(i_train)]*a_layer1
     maetr=mean(abs.(yy_train-predl1))
@@ -115,8 +99,6 @@ weights00=copy(weights)
 
 X=convert(Array{Float32,2},xx_train')
 Y=convert(Array{Float32,2},yy_train')
-# X=rand(Float32,5,1000)
-# Y=sum(X,dims=1)
 m = Chain(
   Dense(vars, neurons_all[1], ANNBN.sigm1),
   # Dense(neurons_all[1], neurons_all[2], ANNBN.sigm1),
@@ -141,8 +123,6 @@ evalcb = () -> @show(100mean(abs.(round.(Tracker.data(m(X)[1,:])).-round.(yy_tra
 Flux.loadparams!(m, weights00)
 
 
-
-
 loss(X, Y)
 predl1=Tracker.data(m(X)[1,:])
 weights = Tracker.data.(params(m))
@@ -163,14 +143,3 @@ maete=100sum(i2)/length(i2)
 
 println(">>>>>>>>>>>>>>>>>>>>>>>>>>START>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 @time for ep=1:1 Flux.train!(loss, params(m), dataset, opt, cb = throttle(evalcb, 1)); end
-
-# weights_out = Tracker.data.(params(m))
-# weights[1][1,2]=1e5
-# Flux.loadparams!(m, weights)
-#
-#
-# typeof(weights)
-#
-# weights2=Vector{Array{Float32}}(undef,0)
-# push!(weights2,rand(Float32,10,5))
-# push!(weights2,rand(Float32,10))
