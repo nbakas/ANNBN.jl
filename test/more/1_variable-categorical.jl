@@ -1,10 +1,8 @@
 
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random, Debugger
-if !(pwd() in LOAD_PATH) push!(LOAD_PATH, pwd()) end
-# using ANNBN
-# include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
+path1=realpath(dirname(@__FILE__)*"/../..")
+include(string(path1,"/src/ANNBN.jl"))
 
-include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
 i_train=100
 i_test=i_train-1
 vars=1
@@ -34,11 +32,6 @@ neurons=Int64(i_train/div1)
 items_per_neuron=div1*ones(Int64,neurons)   # (Int64(floor(i_train/(neurons))))
 n_per_part=[0;cumsum(items_per_neuron)]
 
-# using SpecialFunctions
-# erfi(-3)
-##### Train Sigmoid
-# collect(hcat(a_all))
-include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
 
 @time a_all,a_layer1,layer1=ANNBN.train_layer_1_sigmoid_fast(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train)
 # i1=reduce(hcat, a_all).==[0;0]

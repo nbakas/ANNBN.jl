@@ -15,7 +15,9 @@ i_train=size(xx_train,1)
 i_test=size(xx_test,1)
 vars=size(xx_train,2)
 
-include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
+path1=realpath(dirname(@__FILE__)*"/../..")
+include(string(path1,"/src/ANNBN.jl"))
+
 
 maetrs=Array{Float64}(undef,0)
 maetes=Array{Float64}(undef,0)

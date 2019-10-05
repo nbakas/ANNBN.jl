@@ -11,9 +11,6 @@ function train_layer_1_rbf(neurons,vars,obs,n_per_part,inds_all,x,y,cc)
                 obs1=size(x1,1)
                 phi1 = calc_phi(x1,x1,obs1,obs1,cc,vars)
                 atmp=phi1\y[inds_all[n_per_part[i]+1:n_per_part[i+1]]]
-                # display(plot(y[inds_all[n_per_part[i]+1:n_per_part[i+1]]]))
-                # println(mean(y[inds_all[n_per_part[i]+1:n_per_part[i+1]]])," ",n_per_part[i+1]-n_per_part[i])
-                # if sum(isnan.(atmp))==0 && sum(isinf.(atmp))==0 a_all[i,1:obs1].=atmp else ooops+=1 end
                 if sum(isnan.(atmp))==0 && sum(isinf.(atmp))==0 push!(a_all,atmp) else push!(a_all,zeros(obs1)); ooops+=1 end
             catch ex
                 ooops+=1; println(i," ",ex)
@@ -26,14 +23,6 @@ function train_layer_1_rbf(neurons,vars,obs,n_per_part,inds_all,x,y,cc)
         if i in 1:100:neurons println(Dates.format(now(), "HH:MM:SS")," Calculating output of neuron ",i," , of ",neurons," Total.") end
         x1=copy(x[inds_all[n_per_part[i]+1:n_per_part[i+1]],:])
         obs1=size(x1,1)
-        # obs1=length(inds_all[n_per_part[i]+1:n_per_part[i+1]])
-        # phi1 = calc_phi(x1,x,obs1,obs,cc,vars)
-        # # layer1[:,i].=phi1*a_all[i,1:obs1]
-        # layer1[:,i].=phi1*a_all[i]
-
-
-        # phi=zeros(nn,n)
-        # obs1=length(inds_all[n_per_part[i]+1:n_per_part[i+1]])
         for ii=1:obs
             phis=0.0
             for j=1:obs1
@@ -47,18 +36,9 @@ function train_layer_1_rbf(neurons,vars,obs,n_per_part,inds_all,x,y,cc)
             end
             layer1[ii,i]=phis
         end
-
-
-
-
-
-
-
     end
     println(Dates.format(now(), "HH:MM:SS")," Solving system (",obs," by ",neurons+1,") for weights v in the output Layer")
     a_layer1=[layer1 ones(obs)]\y
     println(Dates.format(now(), "HH:MM:SS")," All weights computed.")
-
     return a_all,a_layer1,layer1
-
 end

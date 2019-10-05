@@ -1,8 +1,7 @@
 
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random, Debugger
-# if !(pwd() in LOAD_PATH) push!(LOAD_PATH, pwd()) end
-# using ANNBN
-include("C:\\Dropbox\\julialangfiles\\ANNBN\\ANNBN.jl")
+path1=realpath(dirname(@__FILE__)*"/../..")
+include(string(path1,"/src/ANNBN.jl"))
 
 tol1=0.01;ANNBN.isigm1(tol1);ANNBN.isigm1(1.0-tol1)
 i_train=1000;i_test=i_train;vars=2

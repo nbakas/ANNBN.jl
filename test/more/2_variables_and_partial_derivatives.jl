@@ -1,6 +1,7 @@
 
 using Plots, Statistics, MLDatasets, LinearAlgebra, Clustering, Printf, Dates, Random
-include("ann_by_parts.jl")
+path1=realpath(dirname(@__FILE__)*"/../..")
+include(string(path1,"/src/ANNBN.jl"))
 
 # Polynomial
 function ff(x)

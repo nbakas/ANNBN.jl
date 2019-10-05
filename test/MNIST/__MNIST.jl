@@ -38,21 +38,16 @@ inds_all=1:i_train;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64
 @time a_all,a_layer1,layer1,mat1=ANNBN.train_layer_1_sigmoid_fast(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train)
 predl1=[layer1 ones(i_train)]*a_layer1
 maetr=mean(abs.(yy_train-predl1))
-maximum(abs.(yy_train-predl1))
 predl1_test,layer1_test=ANNBN.predict_new(a_all,a_layer1,xx_test,i_test,neurons);
 maete=mean(abs.(yy_test-predl1_test))
-maximum(abs.(yy_test-predl1_test))
-i1=predl1.<=0.5;predl1[i1].=tol1;i1=predl1.>0.5;predl1[i1].=1.0-tol1;i2=abs.(predl1.-yy_train).<1e-10;maetr=100sum(i2)/length(i2)
-i1=predl1_test.<=0.5;predl1_test[i1].=tol1;i1=predl1_test.>0.5;predl1_test[i1].=1.0-tol1;i2=abs.(predl1_test.-yy_test).<1e-10;
-maete=100sum(i2)/length(i2)
-maetr=100mean(abs.(round.(predl1).-round.(yy_train)).<0.1)
-maete=100mean(abs.(round.(predl1_test).-round.(yy_test)).<0.1)
+cctr=100mean(abs.(round.(predl1).-round.(yy_train)).<0.1)
+ccte=100mean(abs.(round.(predl1_test).-round.(yy_test)).<0.1)
 
 
 
 # 3rd Step: Train all digits
-maetrs=Array{Float64}(undef,0)
-maetes=Array{Float64}(undef,0)
+cctrs=Array{Float64}(undef,0)
+cctes=Array{Float64}(undef,0)
 dts=Array{Float64}(undef,0)
 predl1_train_all=Array{Float64}(undef,i_train,0)
 predl1_test_all=Array{Float64}(undef,i_test,0)
@@ -72,13 +67,13 @@ neurons=1000;tol1=0.02;
     predl1_test,layer1_test=ANNBN.predict_new(a_all,a_layer1,xx_test,i_test,neurons); maete=mean(abs.(yy_test-predl1_test))
 
     predl1_train_all=[predl1_train_all predl1]; predl1_test_all=[predl1_test_all predl1_test]
-    i1=predl1.<=0.5;predl1[i1].=tol1;i1=predl1.>0.5;predl1[i1].=1.0-tol1;i2=abs.(predl1.-yy_train).<0.01;maetr=100sum(i2)/length(i2)
-    i1=predl1_test.<=0.5;predl1_test[i1].=tol1;i1=predl1_test.>0.5;predl1_test[i1].=1.0-tol1;i2=abs.(predl1_test.-yy_test).<0.01;maete=100sum(i2)/length(i2)
-    push!(maetrs,maetr);push!(maetes,maete)
-    println(num_to_test," ",maete)
+    cctr=100mean(abs.(round.(predl1).-round.(yy_train)).<0.1)
+    ccte=100mean(abs.(round.(predl1_test).-round.(yy_test)).<0.1)
+    push!(cctrs,cctr);push!(cctes,ccte)
+    println(num_to_test," ",ccte)
 end
 println(dts)
-println(maetes)
+println(cctes)
 
 
 yy_train_pred=zeros(i_train)

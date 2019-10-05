@@ -43,7 +43,7 @@ scatter3d(x1,x2,y,zcolor=y,camera=(7,40))
 y=3sigm1.(10x1.-4)-20sigm1.(10x2.-8)
 scatter3d(x1,x2,y,zcolor=y,camera=(7,40))
 
-# countr example, why regression cannot make smooth curves (+... higher order polynomial)
+# counter example, why regression cannot make smooth curves (+... higher order polynomial)
 x=range(0,1,length=100)
 y=(2x.-0.8).^2 
 plot(x,y)
