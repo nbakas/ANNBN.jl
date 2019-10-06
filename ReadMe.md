@@ -37,5 +37,5 @@ Start with example in /test/n_variables.jl . You may change the generating funct
 
 > Classification & Computer Vision
 
-Start with example in /test/MNIST/__MNIST.jl . You may exactly reproduce the results in Table 2 of the manuscript. The same structure is appropriate for simpler classification problems.
+Start with example in /test/MNIST/__MNIST.jl . You may exactly reproduce the results in Table 2 of the manuscript. The same structure is appropriate for other classification problems.
 
