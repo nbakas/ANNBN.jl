@@ -40,8 +40,10 @@ The calculation of the neurons' wights is performed by using the functions ANNBN
 - yy_train:    the input responce
 - cc1:         the shape parameter for the Radial Basis ANNBN (only for train_layer_1_rbf)
 
-*The variables n_per_part, and inds_all, are automatically created by inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200), where 200 is the number of iterations for the clustering. In large datasets, this might be slow, so we may use the sorted indices by utilizing neurons=1000; # For higher accuracy, increase the number of neurons. RAM demands will increase as well.
-inds_all=1:i_train;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
+*The variables n_per_part, and inds_all, are automatically created by inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200), where 200 is the number of iterations for the clustering. In large datasets, this might be slow, so we may use the sorted indices by utilizing 
+- neurons=1000; 
+- inds_all=1:i_train;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
+(For higher accuracy, increase the number of neurons. RAM demands will increase as well.)
 
 Afterwards, the weights a_all, a_layer1 are utilized to predict for new observations, by using the ANNBN.predict_new_rbf or ANNBN.predict_new functions.
 
