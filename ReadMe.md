@@ -31,16 +31,16 @@ Each file create the variables xx_train (x in manuscript), yy_train (y), i_train
 
 The calculation of the neurons' wights is performed by using the functions ANNBN.train_layer_1_rbf(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train,cc1), or ANNBN.train_layer_1_sigmoid_fast(neurons,vars,i_train,n_per_part,inds_all,xx_train,yy_train), depending on whether the radial basis (section 2.2 in manuscript) or the sigmoid (2.1.1-2.1.2) approach is utilized. Correspondingly, the input variables are
 
--neurons:     the number of neurons
--vars:        the number of input variables
--i_train:     the number of observations
--n_per_part:  cumulative number of observations per neuron*
--inds_all:    indices of variables after clustering*
--xx_train:    the input database
--yy_train:    the input responce
--cc1:         the shape parameter for the Radial Basis ANNBN (only for train_layer_1_rbf)
+- neurons:     the number of neurons
+- vars:        the number of input variables
+- i_train:     the number of observations
+- n_per_part:  cumulative number of observations per neuron*
+- inds_all:    indices of variables after clustering*
+- xx_train:    the input database
+- yy_train:    the input responce
+- cc1:         the shape parameter for the Radial Basis ANNBN (only for train_layer_1_rbf)
 
-The variables n_per_part, and inds_all, are automatically created by inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200), where 200 is the number of iterations for the clustering. In large datasets, this might be slow, so we may use the sorted indices by utilizing neurons=1000; # For higher accuracy, increase the number of neurons. RAM demands will increase as well.
+*The variables n_per_part, and inds_all, are automatically created by inds_all,n_per_part=ANNBN.___clustering(neurons,xx_train,200), where 200 is the number of iterations for the clustering. In large datasets, this might be slow, so we may use the sorted indices by utilizing neurons=1000; # For higher accuracy, increase the number of neurons. RAM demands will increase as well.
 inds_all=1:i_train;items_per_neuron=(Int64(floor(i_train/(neurons))))*ones(Int64,neurons);n_per_part=[0;cumsum(items_per_neuron)];n_per_part[end]=i_train
 
 Afterwards, the weights a_all, a_layer1 are utilized to predict for new observations, by using the ANNBN.predict_new_rbf or ANNBN.predict_new functions.
