@@ -1,4 +1,4 @@
-# Fast & Accurate Artificial Neural Networks
+# Fast & Stable Artificial Neural Networks
 
 > Scope
 
