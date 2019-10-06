@@ -29,6 +29,8 @@ EXAMPLES:: The root /test folder, contains the examples presented in the manuscr
 
 Each file create the variables xx_train (x in manuscript), yy_train (y), i_train (m), vars, (n), xx_test, yy_test, i_test (the coresponding, out-of-sample data for testing the prediction model). The weights for the hidden layer are stored in the variable a_all (Vector{Vector{Float64}}), and for the output layer in a_layer1 (with length nerons+1). You may change the number of neurons correspondngly.
 
+The calculation of the neurons' wights is performed by using the functions ANNBN.train_layer_1_rbf, or ANNBN.train_layer_1_sigmoid_fast, depending on whether the radial basis (section 2.2 in manuscript) or the sigmoid (2.1.1-2.1.2) approach is utilized. Afterwards, the weights a_all, a_layer1 are utilized to predict for new observations, by using the ANNBN.predict_new_rbf or ANNBN.predict_new functions.
+
 > Regression
 
 Start with example in /test/n_variables.jl . You may change the generating function, or directly the input xx_train, yy_train, the number of observations, etc., and compare with other methods.
