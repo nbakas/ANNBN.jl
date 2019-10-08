@@ -46,9 +46,9 @@ Afterwards, the weights a_all, a_layer1 are utilized to predict for new observat
 
 ## Regression
 
-Start with example in /test/n_variables.jl . You may change the generating function, or directly the input xx_train, yy_train, the number of observations, etc., and compare with other methods.
+Start with the example /test/n_variables.jl . You may change the generating function, or directly the input xx_train, yy_train, the number of observations, etc., and compare with other methods.
 
 ## Classification & Computer Vision
 
-Start with example in /test/MNIST/__MNIST.jl . You may exactly reproduce the results in Table 2 of the manuscript. The same structure is appropriate for other classification problems.
+Start with the example /test/MNIST/__MNIST.jl . You may exactly reproduce the results in Table 2 of the manuscript. The same structure is appropriate for other classification problems.
 
